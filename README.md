@@ -18,10 +18,10 @@ No synthetic data. No pre-cleaned Kaggle CSV. Raw nested event logs, queried str
 **DAX** KPI logic — ratios, gap measures, % of total, conversion rates 
 
 ## Screenshots
-💹 ![Picture view](first-page.png)
-💹 ![Picture view](second-page.png)
-💹 ![Picture view](third-page.png)
-📄 ![SQL view](app-sql-ss.png)
+💹 ![Picture view](./screenshots/first-page.png)
+💹 ![Picture view](/screenshots/second-page.png)
+💹 ![Picture view](./screenshots/third-page.png)
+📄 ![SQL view](./screenshots/app-sql-ss.png)
 
 ## ❓ Problem statement 
 
