@@ -19,8 +19,11 @@ No synthetic data. No pre-cleaned Kaggle CSV. Raw nested event logs, queried str
 
 ## Screenshots
 💹 ![Picture view](first-page.png)
+
 💹 ![Picture view](second-page.png)
+
 💹 ![Picture view](third-page.png)
+
 📄 ![SQL view](app-sql-ss.png)
 
 ## ❓ Problem statement 
@@ -61,6 +64,7 @@ Google's public Firebase Analytics sample export for **Flood-It!**, a real puzzl
 `firebase-public-project.analytics_153293282.events_*` (BigQuery, free public dataset, no billing account required)
 
 🔗 [Bigquery link] (https://console.cloud.google.com/bigquery?ws=!1m7!1m6!12m5!1m3!1sfleet-rhino-506218-r8!2sus-central1!3s841bf03d-2009-4e44-9ae7-6985f1d631b9!2e1)
+
 📰[File](C:\Users\Admin\Desktop\apps analysis\app analysis.sql)
 
 ## 🚀 How to Reproduce
