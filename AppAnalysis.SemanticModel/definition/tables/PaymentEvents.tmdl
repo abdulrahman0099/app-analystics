@@ -1,0 +1,47 @@
+table PaymentEvents
+	lineageTag: a3bae93f-6695-4588-a308-5c4889dc2740
+
+	column EventName
+		dataType: string
+		lineageTag: c6dc426e-1ea5-487b-9c56-08e15bdb49fc
+		summarizeBy: none
+		sourceColumn: EventName
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: 39c00d6e-2dde-420a-8f66-f7b91a8ad1e2
+		summarizeBy: sum
+		sourceColumn: EventCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column UniqueUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: 4775ba97-96ed-4875-92dc-c35476b31551
+		summarizeBy: sum
+		sourceColumn: UniqueUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PaymentEvents = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [EventName = text, EventCount = Int64.Type, UniqueUsers = Int64.Type],
+				        {
+				            {"spend_virtual_currency", 9363, 2044},
+				            {"use_extra_steps", 8945, 1884},
+				            {"no_more_extra_steps", 2792, 1193},
+				            {"ad_reward", 1912, 354}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

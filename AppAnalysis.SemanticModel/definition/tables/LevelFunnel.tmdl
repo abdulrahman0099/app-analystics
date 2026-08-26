@@ -1,0 +1,72 @@
+table LevelFunnel
+	lineageTag: c8ea41cf-3e76-4398-8033-4d0d6f68eb00
+
+	column Mode
+		dataType: string
+		lineageTag: 05083671-8423-4a5a-8402-a541ae7fb19c
+		summarizeBy: none
+		sourceColumn: Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Stage
+		dataType: string
+		lineageTag: 5997c22c-225d-40db-8b9d-76bf98e36dd8
+		summarizeBy: none
+		sourceColumn: Stage
+		sortByColumn: StageOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column UserCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: dd788278-8b15-450d-92d3-abddb688d925
+		summarizeBy: sum
+		sourceColumn: UserCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column StageOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e5f8758-c474-4ef0-8510-d604f8b2453a
+		summarizeBy: none
+		sourceColumn: StageOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LevelFunnel = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Mode = text, Stage = text, UserCount = Int64.Type],
+				        {
+				            {"Progressive", "level_reset", 8535},
+				            {"Progressive", "level_fail", 17353},
+				            {"Quickplay", "level_retry", 29939},
+				            {"Progressive", "level_end", 54582},
+				            {"Progressive", "level_complete", 33986},
+				            {"Quickplay", "level_complete", 191088},
+				            {"Progressive", "level_retry", 43345},
+				            {"Progressive", "level_start", 74417},
+				            {"Quickplay", "level_end", 349729},
+				            {"Quickplay", "level_reset", 122278},
+				            {"Quickplay", "level_start", 523430},
+				            {"Quickplay", "level_fail", 137035}
+				        }
+				    ),
+				    #"Added StageOrder" = Table.AddColumn(Source, "StageOrder", each
+				        if [Stage] = "level_start" then 1
+				        else if [Stage] = "level_end" then 2
+				        else if [Stage] = "level_complete" then 3
+				        else if [Stage] = "level_fail" then 4
+				        else if [Stage] = "level_retry" then 5
+				        else 6
+				    , Int64.Type)
+				in
+				    #"Added StageOrder"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DAU","Activation","CompletionByMode","LevelFunnel","AppErrorStatus","AppVersionFailures","PaymentEvents","ScreenActivity","_Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DAU
+ref table Activation
+ref table CompletionByMode
+ref table LevelFunnel
+ref table AppErrorStatus
+ref table AppVersionFailures
+ref table PaymentEvents
+ref table ScreenActivity
+ref table _Measures
+ref table DateTableTemplate_bf1fa9b1-2a60-40a8-95b9-9083d36626d9
+ref table LocalDateTable_db9f5996-d8bb-40bd-a445-e4bfed456bcc
+

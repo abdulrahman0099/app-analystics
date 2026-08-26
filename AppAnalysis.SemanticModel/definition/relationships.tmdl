@@ -1,0 +1,5 @@
+relationship 811b92a0-4bdb-4e75-9693-a2da6fb26d39
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DAU.Date
+	toColumn: LocalDateTable_db9f5996-d8bb-40bd-a445-e4bfed456bcc.Date
+

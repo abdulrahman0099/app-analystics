@@ -1,0 +1,54 @@
+table ScreenActivity
+	lineageTag: a203e21f-b00c-4bb2-86c5-d1328777c44b
+
+	column Screen
+		dataType: string
+		lineageTag: f2fa0b20-c50a-44c8-8a4b-c680c113aacf
+		summarizeBy: none
+		sourceColumn: Screen
+
+		annotation SummarizationSetBy = Automatic
+
+	column Views
+		dataType: int64
+		formatString: #,0
+		lineageTag: e5909545-8002-496b-ad8f-d4d001bbb103
+		summarizeBy: sum
+		sourceColumn: Views
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ScreenActivity = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Screen = text, Views = Int64.Type],
+				        {
+				            {"game_over", 357143},
+				            {"FIRootViewController", 343619},
+				            {"game_board", 342909},
+				            {"GameFinishedActivity", 192918},
+				            {"FIGameOverViewController", 161468},
+				            {"main_menu", 105435},
+				            {"iap", 82243},
+				            {"out_of_steps", 80840},
+				            {"FIOutOfStepsViewController", 79885},
+				            {"shop_menu", 76841},
+				            {"ExtraStepsActivity", 74911},
+				            {"GADOInterstitialViewController", 60342},
+				            {"extra_steps", 47747},
+				            {"FloodItActivity", 47726},
+				            {"GADNFullScreenAdViewController", 39614},
+				            {"FIMainMenuViewController", 37083},
+				            {"MainMenuActivity", 36934},
+				            {"AdActivity", 29639},
+				            {"level_select", 17243},
+				            {"LevelSelectionActivity", 8681}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

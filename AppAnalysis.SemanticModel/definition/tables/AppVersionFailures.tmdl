@@ -1,0 +1,82 @@
+table AppVersionFailures
+	lineageTag: 412c5f81-d28f-41ef-ac62-d2a51b743a85
+
+	column OS
+		dataType: string
+		lineageTag: c35a323e-0389-4728-b492-609a23112d19
+		summarizeBy: none
+		sourceColumn: OS
+
+		annotation SummarizationSetBy = Automatic
+
+	column AppVersion
+		dataType: string
+		lineageTag: 217628e0-ae36-4846-b66b-3589eb95bdd9
+		summarizeBy: none
+		sourceColumn: AppVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	column FailedCount
+		dataType: int64
+		formatString: #,0
+		lineageTag: 0519e597-6abe-4ea4-b250-6777c4ebbdb2
+		summarizeBy: sum
+		sourceColumn: FailedCount
+
+		annotation SummarizationSetBy = Automatic
+
+	column OSVersion
+		dataType: string
+		lineageTag: e8a40e0b-3a60-478f-8568-8c3a5ab59101
+		summarizeBy: none
+		sourceColumn: OSVersion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AppVersionFailures = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [OS = text, AppVersion = text, FailedCount = Int64.Type],
+				        {
+				            {"ANDROID", "2.62", 2711},
+				            {"IOS", "2.6.31", 1403},
+				            {"ANDROID", "2.59", 1345},
+				            {"IOS", "2.6.30", 452},
+				            {"IOS", "2.6.10", 201},
+				            {"IOS", "2.6.27", 169},
+				            {"ANDROID", "2.59", 143},
+				            {"IOS", "2.6.30", 98},
+				            {"ANDROID", "2.62", 73},
+				            {"IOS", "2.6.10", 67},
+				            {"IOS", "2.6.26", 54},
+				            {"ANDROID", "2.57", 47},
+				            {"IOS", "2.6.27", 19},
+				            {"ANDROID", "2.41", 14},
+				            {"IOS", "2.4.1", 14},
+				            {"ANDROID", "2.53", 9},
+				            {"ANDROID", "2.52", 7},
+				            {"IOS", "2.6.8", 5},
+				            {"IOS", "2.6.26", 5},
+				            {"IOS", "2.2.5", 4},
+				            {"IOS", "2.6.22", 3},
+				            {"IOS", "2.6.24", 3},
+				            {"ANDROID", "2.51", 2},
+				            {"ANDROID", "2.58", 2},
+				            {"IOS", "2.6.25", 2},
+				            {"IOS", "2.6.21", 2},
+				            {"IOS", "2.5.5", 2},
+				            {"ANDROID", "2.57", 2},
+				            {"ANDROID", "2.58", 1},
+				            {"IOS", "2.6.6", 1},
+				            {"IOS", "2.2.5", 1}
+				        }
+				    ),
+				    #"Added VersionLabel" = Table.AddColumn(Source, "OSVersion", each [OS] & " " & [AppVersion], type text)
+				in
+				    #"Added VersionLabel"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,122 @@
+table _Measures
+	lineageTag: a00b3fe6-eb9f-47fb-b4f9-fc229bd56d6f
+
+	measure 'Total New Users' = SUM(Activation[TotalNewUsers])
+		formatString: #,0
+		lineageTag: 51b8c5c9-c1c0-4d6b-9950-a33923c77eee
+
+	measure 'Activated Users' = SUM(Activation[ActivatedUsers])
+		formatString: #,0
+		lineageTag: 14f1459c-87d3-4c97-a189-84f1a2134b11
+
+	measure 'Non-Activated Users' = [Total New Users] - [Activated Users]
+		formatString: #,0
+		lineageTag: 3a29c954-ad14-4944-b5e2-a3627c7f4668
+
+	measure 'Activation Rate %' = DIVIDE(SUM(Activation[ActivatedUsers]), SUM(Activation[TotalNewUsers]))
+		formatString: 0.00%
+		lineageTag: 8329ad83-336a-4835-b0df-db182b9dde90
+
+	measure 'Avg Daily Active Users' = AVERAGE(DAU[DailyActiveUsers])
+		formatString: #,0
+		lineageTag: b09091cc-447c-44f6-9cc8-bbd09153df71
+
+	measure 'Peak DAU' = MAX(DAU[DailyActiveUsers])
+		formatString: #,0
+		lineageTag: 3744a42b-5b0f-4ac9-972b-e8dd59211d59
+
+	measure 'Latest DAU' = CALCULATE(SUM(DAU[DailyActiveUsers]), DAU[Date] = MAX(DAU[Date]))
+		formatString: #,0
+		lineageTag: a3b785af-5b67-451d-8b9f-4be5e6d45f5e
+
+	measure 'Total Active Days Tracked' = COUNTROWS(DAU)
+		formatString: #,0
+		lineageTag: 06ce65ab-e537-44ef-b288-be3f65bd56aa
+
+	measure 'Overall Completion Rate %' = CALCULATE(DIVIDE(SUM(CompletionByMode[CompletedUsers]), SUM(CompletionByMode[StartedUsers])), CompletionByMode[Mode] = "Overall")
+		formatString: 0.00%
+		lineageTag: d472d756-281a-4c00-b708-b7e4c963f88b
+
+	measure 'Quickplay Completion Rate %' = CALCULATE(DIVIDE(SUM(CompletionByMode[CompletedUsers]), SUM(CompletionByMode[StartedUsers])), CompletionByMode[Mode] = "Quickplay")
+		formatString: 0.00%
+		lineageTag: 53e05799-82d4-40d2-b8f5-6a238895efdb
+
+	measure 'Progressive Completion Rate %' = CALCULATE(DIVIDE(SUM(CompletionByMode[CompletedUsers]), SUM(CompletionByMode[StartedUsers])), CompletionByMode[Mode] = "Progressive")
+		formatString: 0.00%
+		lineageTag: c44f170f-217a-4212-9667-3730c9952f45
+
+	measure 'Completion Gap pp' = [Progressive Completion Rate %] - [Quickplay Completion Rate %]
+		formatString: 0.00%
+		lineageTag: d1ea3e63-2385-4980-ab0d-0b69049aca68
+
+	measure 'Total Level Attempts' = SUM(LevelFunnel[UserCount])
+		formatString: #,0
+		lineageTag: 4c3b2224-771d-4b54-9aa0-350f4cff38c0
+
+	measure 'Level Fail Rate %' = DIVIDE(CALCULATE(SUM(LevelFunnel[UserCount]), LevelFunnel[Stage] = "level_fail"), CALCULATE(SUM(LevelFunnel[UserCount]), LevelFunnel[Stage] = "level_start"))
+		formatString: 0.00%
+		lineageTag: ccad4db6-3312-484d-9e38-614a8d22017a
+
+	measure 'Level Retry Rate %' = DIVIDE(CALCULATE(SUM(LevelFunnel[UserCount]), LevelFunnel[Stage] = "level_retry"), CALCULATE(SUM(LevelFunnel[UserCount]), LevelFunnel[Stage] = "level_start"))
+		formatString: 0.00%
+		lineageTag: 6d07b0be-9fdd-4dfb-9183-dd6ab68890a3
+
+	measure 'Uninstall Rate % No Error' = CALCULATE(DIVIDE(SUM(AppErrorStatus[UninstalledUsers]), SUM(AppErrorStatus[Users])), AppErrorStatus[ErrorGroup] = "No app error")
+		formatString: 0.00%
+		lineageTag: a3e375eb-85ee-4e76-8138-9dcb5a38cbc7
+
+	measure 'Uninstall Rate % Had Error' = CALCULATE(DIVIDE(SUM(AppErrorStatus[UninstalledUsers]), SUM(AppErrorStatus[Users])), AppErrorStatus[ErrorGroup] = "Had app error")
+		formatString: 0.00%
+		lineageTag: abaf1cbc-6e64-4739-b575-94f0adcd891f
+
+	measure 'Total Recorded Failures' = SUM(AppVersionFailures[FailedCount])
+		formatString: #,0
+		lineageTag: 4a43fb93-9298-4513-872e-9b60249d0ae0
+
+	measure 'Total Monetization Events' = SUM(PaymentEvents[EventCount])
+		formatString: #,0
+		lineageTag: 15bcb3d4-c9e2-42b8-94b0-656f4f67dc9b
+
+	measure 'Currency Spenders' = CALCULATE(SUM(PaymentEvents[UniqueUsers]), PaymentEvents[EventName] = "spend_virtual_currency")
+		formatString: #,0
+		lineageTag: 65d71c24-62c1-48ad-acf1-725dab791032
+
+	measure 'Out of Currency Users' = CALCULATE(SUM(PaymentEvents[UniqueUsers]), PaymentEvents[EventName] = "no_more_extra_steps")
+		formatString: #,0
+		lineageTag: 8e7816ba-86c8-4065-875c-190c89b28a27
+
+	measure 'Ad Reward Users' = CALCULATE(SUM(PaymentEvents[UniqueUsers]), PaymentEvents[EventName] = "ad_reward")
+		formatString: #,0
+		lineageTag: 27700c08-5a3d-4f48-b23f-28715837c142
+
+	measure 'Ad Reward Conversion %' = DIVIDE([Ad Reward Users], [Out of Currency Users])
+		formatString: 0.00%
+		lineageTag: 55d57d7e-5978-4a5b-beb4-9e956f9d407a
+
+	measure 'Total Screen Views' = SUM(ScreenActivity[Views])
+		formatString: #,0
+		lineageTag: 3703f971-f603-4027-9d33-0094a4872f83
+
+	measure 'IAP Screen Views' = CALCULATE(SUM(ScreenActivity[Views]), ScreenActivity[Screen] = "iap")
+		formatString: #,0
+		lineageTag: 5e4325e0-6df4-4b61-809e-78279bda3483
+
+	column Column1
+		dataType: string
+		isHidden
+		lineageTag: ce99fc19-d3bf-49a2-b080-87faf5bb0546
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Column1 = text], {{"Measures"}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

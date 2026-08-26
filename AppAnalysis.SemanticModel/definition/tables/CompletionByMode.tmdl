@@ -1,0 +1,55 @@
+table CompletionByMode
+	lineageTag: 3b3c73f2-a524-484a-95f8-976066be28e1
+
+	column Mode
+		dataType: string
+		lineageTag: 45df0350-0a80-433e-bb11-852a5cd23a5e
+		summarizeBy: none
+		sourceColumn: Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartedUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: b522395c-bc91-474d-9869-cbd4d26f5b52
+		summarizeBy: sum
+		sourceColumn: StartedUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompletedUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: 66c747c1-32fc-49cb-834b-9e7722b4920d
+		summarizeBy: sum
+		sourceColumn: CompletedUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column CompletionRatePct
+		dataType: double
+		formatString: 0.00%
+		lineageTag: 7442a082-6670-4795-a143-e84f27963295
+		summarizeBy: none
+		sourceColumn: CompletionRatePct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CompletionByMode = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Mode = text, StartedUsers = Int64.Type, CompletedUsers = Int64.Type, CompletionRatePct = number],
+				        {
+				            {"Overall", 14940, 9334, 0.6248},
+				            {"Quickplay", 10166, 5676, 0.5583},
+				            {"Progressive", 4774, 3658, 0.7662}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "a00b3fe6-eb9f-47fb-b4f9-fc229bd56d6f",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 74
+          },
+          "nodeIndex": "Activation",
+          "nodeLineageTag": "45c0afff-3ed2-4c9a-a62b-23a460ea23c1",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 264,
+            "y": 281
+          },
+          "nodeIndex": "AppErrorStatus",
+          "nodeLineageTag": "0afe007c-2276-47a5-9234-687e3970cda2",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 559,
+            "y": 152
+          },
+          "nodeIndex": "AppVersionFailures",
+          "nodeLineageTag": "412c5f81-d28f-41ef-ac62-d2a51b743a85",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 62
+          },
+          "nodeIndex": "CompletionByMode",
+          "nodeLineageTag": "3b3c73f2-a524-484a-95f8-976066be28e1",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 74
+          },
+          "nodeIndex": "DAU",
+          "nodeLineageTag": "eeac3397-bcc8-49de-b3de-1dcd717c573b",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 62
+          },
+          "nodeIndex": "LevelFunnel",
+          "nodeLineageTag": "c8ea41cf-3e76-4398-8033-4d0d6f68eb00",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 74
+          },
+          "nodeIndex": "PaymentEvents",
+          "nodeLineageTag": "a3bae93f-6695-4588-a308-5c4889dc2740",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 86
+          },
+          "nodeIndex": "ScreenActivity",
+          "nodeLineageTag": "a203e21f-b00c-4bb2-86c5-d1328777c44b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

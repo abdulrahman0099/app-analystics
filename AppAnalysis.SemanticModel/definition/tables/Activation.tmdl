@@ -1,0 +1,45 @@
+table Activation
+	lineageTag: 45c0afff-3ed2-4c9a-a62b-23a460ea23c1
+
+	column TotalNewUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: ac15f70d-ca2a-4e6b-bf7a-333b2837f3e3
+		summarizeBy: sum
+		sourceColumn: TotalNewUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActivatedUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7e60bba4-c504-42f9-93ae-9db949e532b5
+		summarizeBy: sum
+		sourceColumn: ActivatedUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column ActivationRatePct
+		dataType: double
+		formatString: 0.00%
+		lineageTag: 98ae19a4-b556-4c1d-9b79-5ec6ab6e47df
+		summarizeBy: none
+		sourceColumn: ActivationRatePct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Activation = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [TotalNewUsers = Int64.Type, ActivatedUsers = Int64.Type, ActivationRatePct = number],
+				        {
+				            {4319, 1163, 0.2693}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

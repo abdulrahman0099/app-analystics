@@ -1,0 +1,165 @@
+table DAU
+	lineageTag: eeac3397-bcc8-49de-b3de-1dcd717c573b
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5daacc5c-ce92-4fd9-bc42-fddf3e8791ef
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 811b92a0-4bdb-4e75-9693-a2da6fb26d39
+			defaultHierarchy: LocalDateTable_db9f5996-d8bb-40bd-a445-e4bfed456bcc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DailyActiveUsers
+		dataType: int64
+		formatString: 0
+		lineageTag: 406b3b9f-cacc-4258-8a7c-b90a5e3812d3
+		summarizeBy: sum
+		sourceColumn: DailyActiveUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: 54ea8738-a651-4f94-b2e4-747acee7fdc7
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DAU = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Date = date, DailyActiveUsers = Int64.Type],
+				        {
+				            {#date(2018,6,12), 449},
+				            {#date(2018,6,13), 515},
+				            {#date(2018,6,14), 503},
+				            {#date(2018,6,15), 488},
+				            {#date(2018,6,16), 421},
+				            {#date(2018,6,17), 443},
+				            {#date(2018,6,18), 1283},
+				            {#date(2018,6,19), 1240},
+				            {#date(2018,6,20), 393},
+				            {#date(2018,6,21), 412},
+				            {#date(2018,6,22), 444},
+				            {#date(2018,6,23), 460},
+				            {#date(2018,6,24), 399},
+				            {#date(2018,6,25), 1235},
+				            {#date(2018,6,26), 1187},
+				            {#date(2018,6,27), 410},
+				            {#date(2018,6,28), 1219},
+				            {#date(2018,6,29), 505},
+				            {#date(2018,6,30), 1211},
+				            {#date(2018,7,1), 1225},
+				            {#date(2018,7,2), 451},
+				            {#date(2018,7,3), 438},
+				            {#date(2018,7,4), 425},
+				            {#date(2018,7,5), 426},
+				            {#date(2018,7,6), 414},
+				            {#date(2018,7,7), 457},
+				            {#date(2018,7,8), 384},
+				            {#date(2018,7,9), 422},
+				            {#date(2018,7,10), 452},
+				            {#date(2018,7,11), 426},
+				            {#date(2018,7,12), 453},
+				            {#date(2018,7,13), 470},
+				            {#date(2018,7,14), 414},
+				            {#date(2018,7,15), 407},
+				            {#date(2018,7,16), 406},
+				            {#date(2018,7,17), 368},
+				            {#date(2018,7,18), 377},
+				            {#date(2018,7,19), 346},
+				            {#date(2018,7,20), 431},
+				            {#date(2018,7,21), 506},
+				            {#date(2018,7,22), 413},
+				            {#date(2018,7,23), 439},
+				            {#date(2018,7,24), 435},
+				            {#date(2018,7,25), 413},
+				            {#date(2018,7,26), 419},
+				            {#date(2018,7,27), 466},
+				            {#date(2018,7,28), 483},
+				            {#date(2018,7,29), 491},
+				            {#date(2018,7,30), 488},
+				            {#date(2018,7,31), 448},
+				            {#date(2018,8,1), 447},
+				            {#date(2018,8,2), 512},
+				            {#date(2018,8,3), 548},
+				            {#date(2018,8,4), 555},
+				            {#date(2018,8,5), 524},
+				            {#date(2018,8,6), 505},
+				            {#date(2018,8,7), 493},
+				            {#date(2018,8,8), 506},
+				            {#date(2018,8,9), 455},
+				            {#date(2018,8,10), 372},
+				            {#date(2018,8,11), 456},
+				            {#date(2018,8,12), 470},
+				            {#date(2018,8,13), 512},
+				            {#date(2018,8,14), 444},
+				            {#date(2018,8,15), 425},
+				            {#date(2018,8,16), 459},
+				            {#date(2018,8,17), 458},
+				            {#date(2018,8,18), 498},
+				            {#date(2018,8,19), 467},
+				            {#date(2018,8,20), 471},
+				            {#date(2018,8,21), 485},
+				            {#date(2018,8,22), 459},
+				            {#date(2018,8,23), 427},
+				            {#date(2018,8,24), 485},
+				            {#date(2018,8,25), 495},
+				            {#date(2018,8,26), 455},
+				            {#date(2018,8,27), 495},
+				            {#date(2018,8,28), 467},
+				            {#date(2018,8,29), 504},
+				            {#date(2018,8,30), 496},
+				            {#date(2018,8,31), 466},
+				            {#date(2018,9,1), 465},
+				            {#date(2018,9,2), 485},
+				            {#date(2018,9,3), 466},
+				            {#date(2018,9,4), 476},
+				            {#date(2018,9,5), 533},
+				            {#date(2018,9,6), 521},
+				            {#date(2018,9,7), 533},
+				            {#date(2018,9,8), 534},
+				            {#date(2018,9,9), 554},
+				            {#date(2018,9,10), 539},
+				            {#date(2018,9,11), 474},
+				            {#date(2018,9,12), 577},
+				            {#date(2018,9,13), 503},
+				            {#date(2018,9,14), 483},
+				            {#date(2018,9,15), 432},
+				            {#date(2018,9,16), 455},
+				            {#date(2018,9,17), 482},
+				            {#date(2018,9,18), 490},
+				            {#date(2018,9,19), 518},
+				            {#date(2018,9,20), 441},
+				            {#date(2018,9,21), 534},
+				            {#date(2018,9,22), 532},
+				            {#date(2018,9,23), 566},
+				            {#date(2018,9,24), 468},
+				            {#date(2018,9,25), 488},
+				            {#date(2018,9,26), 529},
+				            {#date(2018,9,27), 644},
+				            {#date(2018,9,28), 549},
+				            {#date(2018,9,29), 564},
+				            {#date(2018,9,30), 519},
+				            {#date(2018,10,1), 483},
+				            {#date(2018,10,2), 495},
+				            {#date(2018,10,3), 484}
+				        }
+				    ),
+				    #"Added Day Name" = Table.AddColumn(Source, "DayOfWeek", each Date.DayOfWeekName([Date]), type text)
+				in
+				    #"Added Day Name"
+
+	annotation PBI_ResultType = Table
+

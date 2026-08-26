@@ -1,0 +1,54 @@
+table AppErrorStatus
+	lineageTag: 0afe007c-2276-47a5-9234-687e3970cda2
+
+	column ErrorGroup
+		dataType: string
+		lineageTag: 278bade6-9c30-48c4-ab4f-6de1aa3774cc
+		summarizeBy: none
+		sourceColumn: ErrorGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	column Users
+		dataType: int64
+		formatString: #,0
+		lineageTag: feb90290-b483-46e5-8303-0ebc39eec51c
+		summarizeBy: sum
+		sourceColumn: Users
+
+		annotation SummarizationSetBy = Automatic
+
+	column UninstalledUsers
+		dataType: int64
+		formatString: #,0
+		lineageTag: 2fb48ace-0ead-4bcb-a081-65a9d5090fdc
+		summarizeBy: sum
+		sourceColumn: UninstalledUsers
+
+		annotation SummarizationSetBy = Automatic
+
+	column UninstallUserPct
+		dataType: double
+		formatString: 0.00%
+		lineageTag: 3c636633-2bea-49a9-bff4-963f8349c9a8
+		summarizeBy: none
+		sourceColumn: UninstallUserPct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AppErrorStatus = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [ErrorGroup = text, Users = Int64.Type, UninstalledUsers = Int64.Type, UninstallUserPct = number],
+				        {
+				            {"Had app error", 1307, 111, 0.0849},
+				            {"No app error", 13868, 2528, 0.1823}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
